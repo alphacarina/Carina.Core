@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Carina.Core</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>lavoiecsh</authors>
+    <owners>alphacarina</owners>
+    <licenseUrl>https://raw.githubusercontent.com/alphacarina/Carina.Core/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/alphacarina/Carina.Core</projectUrl>
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common types for all Carina projects</description>
+    <releaseNotes>Creation of the package.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>C# .NET</tags>
+  </metadata>
+</package>
