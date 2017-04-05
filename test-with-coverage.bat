@@ -6,8 +6,8 @@ set NUNIT=packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe
 set OPENCOVER=packages\OpenCover.4.6.519\tools\OpenCover.Console.exe
 set REPORT_GEN=packages\ReportGenerator.2.4.5.0\tools\ReportGenerator.exe
 set TOCOBERTURA=packages\OpenCoverToCoberturaConverter.0.2.4.0\tools\OpenCoverToCoberturaConverter.exe
-set TEST_TARGETS=Cieblink.Tests\bin\%BUILD_TARGET%\Cieblink.Tests.dll SimpleCqrs.Tests\bin\%BUILD_TARGET%\SimpleCqrs.Core.Tests.dll SimpleCrqs.EventStore.MongoDb.Tests\bin\%BUILD_TARGET%\SimpleCrqs.EventStore.MongoDb.Tests.dll
-set NAMESPACE_FILTERS=+[*]* -[FluentAssertions*]* -[FluentValidation*]* -[Cieblink.Contracts*]* -[Cieblink.Resources*]* -[Cieblink.Migration*]* -[Pyxis.AspNet.Identity*]* -[Microsoft*]*
+set TEST_TARGETS=%PACKAGE_NAME%.Tests\bin\%BUILD_TARGET%\%PACKAGE_NAME%.Tests.dll
+set NAMESPACE_FILTERS=+[*]* -[FluentAssertions*]* -[FluentValidation*]* -[Microsoft*]*
 set ATTRIBUTE_FILTERS=*GeneratedCode*;*ExcludeFromCodeCoverage*
 if /I "%1"=="no_ui" set NO_UI=--where:cat!=ui
 
@@ -16,9 +16,7 @@ del /Q /S Reports
 
 %OPENCOVER% -register:user "-target:%NUNIT%" "-targetargs:%TEST_TARGETS% --result:Reports\TestResults.xml;format=nunit2 %NO_UI%" -output:Reports\OpenCover.xml -filter:"%NAMESPACE_FILTERS%" -excludebyattribute:%ATTRIBUTE_FILTERS%
 
-rem to enable code coverage uncomment the two following lines
 %TOCOBERTURA% -input:Reports\OpenCover.xml -output:Reports\cobertura.xml -sources:.
 %REPORT_GEN% -reports:Reports\OpenCover.xml -targetdir:Reports\Coverage\Server
-rem call .\node_modules\.bin\karma.cmd start karma-jenkins.conf.js
 
 endlocal
